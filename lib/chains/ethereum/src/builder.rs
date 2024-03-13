@@ -116,7 +116,7 @@ impl Builder for EthereumBuilder {
 				provider.clone(),
 				config.clone(),
 				self.start_block,
-				self.block_confirmations,
+				self.block_confirmations as u64,
 			);
 
 			let (writer, writer_sender) = HttpWriter::new(provider.clone(), config.clone());
@@ -136,7 +136,7 @@ impl Builder for EthereumBuilder {
 				provider.clone(),
 				config.clone(),
 				self.start_block,
-				self.block_confirmations,
+				self.block_confirmations as u64,
 			);
 
 			let (writer, writer_sender) = WsWriter::new(provider.clone(), config.clone());
