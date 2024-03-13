@@ -1,0 +1,16 @@
+[package]
+name = "highway-bridge"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+clap = { version = "4.4.11", features = [ "derive" ] }
+futures = { version = "0.3.30" }
+tokio = { version = "1", features = ["full"] }
+tracing = { version = "0.1" }
+tracing-subscriber = { version = "0.3" }
+serde_json = "1.0.1"
+
+# Highway crates
+highway-core = { path = "../lib/core" }
+highway-ethereum = { path = "../lib/chains/ethereum" }
