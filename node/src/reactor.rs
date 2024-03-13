@@ -8,7 +8,7 @@ use highway_core::{
 };
 use highway_ethereum::builder::EthereumBuilder;
 use tokio::sync::mpsc::Sender;
-use tracing::error;
+use tracing::{error, info};
 
 pub struct Reactor {
 	config: BridgeConfig,
@@ -36,26 +36,17 @@ impl Reactor {
 						},
 						None => 12,
 					};
-					let bridge_address = match chain.extra.get("bridge") {
-						Some(address) => address,
-						None => {
-							error!("No ethereum bridge address specified in `extra`");
-							return;
-						},
+					let Some(bridge_address) = chain.extra.get("bridge") else {
+						error!("No ethereum bridge address specified in `extra`");
+						return;
 					};
-					let erc20_handler_address = match chain.extra.get("erc20_handler") {
-						Some(address) => address,
-						None => {
-							error!("No ethereum ERC-20 handler address specified in `extra`");
-							return;
-						},
+					let Some(erc20_handler_address) = chain.extra.get("erc20_handler") else {
+						error!("No ethereum ERC-20 handler address specified in `extra`");
+						return;
 					};
-					let erc721_handler_address = match chain.extra.get("erc721_handler") {
-						Some(address) => address,
-						None => {
-							error!("No ethereum ERC-721 handler address specified in `extra`");
-							return;
-						},
+					let Some(erc721_handler_address) = chain.extra.get("erc721_handler") else {
+						error!("No ethereum ERC-721 handler address specified in `extra`");
+						return;
 					};
 
 					let builder_result = EthereumBuilder::new(
@@ -75,7 +66,6 @@ impl Reactor {
 
 					let sender = match builder_result {
 						Ok(services) => {
-							println!("OK");
 							let reader_service = services.reader;
 							let writer_service = services.writer;
 							bridge_services.push(Box::pin(reader_service.run()));
@@ -95,7 +85,7 @@ impl Reactor {
 		}
 
 		bridge_services.push(Box::pin(Box::new(router).run()));
-		println!("Waiting for {}", bridge_services.len());
+		info!("Waiting for {}", bridge_services.len());
 		let _ = futures::future::join_all(bridge_services).await;
 	}
 }
