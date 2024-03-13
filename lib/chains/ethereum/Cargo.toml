@@ -1,0 +1,26 @@
+[package]
+name = "highway-ethereum"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+categories.workspace = true
+keywords.workspace = true
+exclude.workspace = true
+
+[dependencies]
+async-trait = "0.1.75"
+derive_more = "0.99.17"
+serde = "1.0"
+
+highway-core = { path = "../../core" }
+
+ethers-core = { version = "2.0", default-features = false }
+ethers-contract = { version = "2.0", default-features = false }
+ethers-providers = { version = "2.0", default-features = false, features = [ "ws", "rustls" ] }
+ethers-middleware = { version = "2.0", default-features = false }
+
+tokio = { version = "1", default-features = false }
+tracing = { version = "0.1", default-features = false }
