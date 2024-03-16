@@ -85,7 +85,6 @@ impl Reactor {
 		}
 
 		bridge_services.push(Box::pin(Box::new(router).run()));
-		info!("Waiting for {}", bridge_services.len());
 		let _ = futures::future::join_all(bridge_services).await;
 	}
 }
