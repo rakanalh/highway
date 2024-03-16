@@ -8,13 +8,13 @@ homepage = "https://github.com/rakanalh/highway"
 categories = ["cryptography::cryptocurrencies"]
 keywords = ["crypto", "bridge", "ethereum", "substrate", "web3"]
 exclude = [
-    ".github/",
-    "bin/",
-    "**/tests/",
-    "**/test-data/",
-    "**/testdata/",
-    "examples",
-    "scripts/",
+  ".github/",
+  "bin/",
+  "**/tests/",
+  "**/test-data/",
+  "**/testdata/",
+  "examples",
+  "scripts/",
 ]
 
 [profile.release]
