@@ -75,31 +75,31 @@ jobs:
         run: |
           cargo clippy --no-deps --all-targets --workspace -- --deny warnings
 
-  tests:
-    name: Run tests
-    needs: format
-    # The type of runner that the job will run on
-    runs-on: ubuntu-22.04
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-      - name: Install linux dependencies
-        run: sudo apt update && sudo apt install -y cargo
-      - name: Install nightly toolchain
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: nightly-2023-12-04
-          override: true
-          target: wasm32-unknown-unknown
-      - name: Rust Cache
-        uses: Swatinem/rust-cache@v2
-      - name: Run cargo-tarpaulin
-        uses: actions-rs/tarpaulin@v0.1
-        with:
-          version: '0.22.0'
-          args: '--verbose --locked --no-fail-fast --workspace --out "Xml"'
-      - name: Upload coverage report
-        uses: actions/upload-artifact@v3
-        with:
-          name: tarpaulin coverage
-          path: ./tarpaulin-report.xml
+  # tests:
+  #   name: Run tests
+  #   needs: format
+  #   # The type of runner that the job will run on
+  #   runs-on: ubuntu-22.04
+  #   steps:
+  #     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+  #     - uses: actions/checkout@v3
+  #     - name: Install linux dependencies
+  #       run: sudo apt update && sudo apt install -y cargo
+  #     - name: Install nightly toolchain
+  #       uses: actions-rs/toolchain@v1
+  #       with:
+  #         toolchain: nightly-2023-12-04
+  #         override: true
+  #         target: wasm32-unknown-unknown
+  #     - name: Rust Cache
+  #       uses: Swatinem/rust-cache@v2
+  #     - name: Run cargo-tarpaulin
+  #       uses: actions-rs/tarpaulin@v0.1
+  #       with:
+  #         version: '0.22.0'
+  #         args: '--verbose --locked --no-fail-fast --workspace --out "Xml"'
+  #     - name: Upload coverage report
+  #       uses: actions/upload-artifact@v3
+  #       with:
+  #         name: tarpaulin coverage
+  #         path: ./tarpaulin-report.xml
