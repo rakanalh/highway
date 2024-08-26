@@ -11,16 +11,11 @@ repository.workspace = true
 rust-version.workspace = true
 
 [dependencies]
-async-trait = "0.1.75"
-derive_more = "0.99.17"
-serde = "1.0"
+alloy = { workspace = true, features = ["sol-types", "providers"] }
+async-trait = { workspace = true }
+derive_more = { workspace = true }
+serde = { workspace = true }
+tokio = { workspace = true }
+tracing = { workspace = true }
 
 highway-core = { path = "../../core" }
-
-ethers-contract = { version = "2.0", default-features = false }
-ethers-core = { version = "2.0", default-features = false }
-ethers-middleware = { version = "2.0", default-features = false }
-ethers-providers = { version = "2.0", default-features = false, features = ["ws", "rustls"] }
-
-tokio = { version = "1", default-features = false }
-tracing = { version = "0.1", default-features = false }
