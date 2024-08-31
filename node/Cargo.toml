@@ -13,4 +13,4 @@ tracing-subscriber = { workspace = true }
 
 # Highway crates
 highway-core = { path = "../lib/core" }
-highway-ethereum = { path = "../lib/chains/ethereum" }
+highway-evm = { path = "../lib/chains/ethereum" }

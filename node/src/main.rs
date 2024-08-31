@@ -48,12 +48,13 @@ async fn main() {
 	let config: BridgeConfig = serde_json::from_str(&data).expect("JSON was not well-formatted");
 
 	match &cli.command {
-		Some(Commands::ReplayBlock { list }) =>
+		Some(Commands::ReplayBlock { list }) => {
 			if *list {
 				println!("Printing testing lists...");
 			} else {
 				println!("Not printing testing lists...");
-			},
+			}
+		},
 		Some(Commands::Run {}) | None => {
 			commands::run(config).await;
 		},

@@ -30,12 +30,6 @@ pub struct BridgeConfig {
 	pub chains: Vec<ChainConfig>,
 }
 
-#[derive(Debug)]
-pub enum BuilderError {
-	InvalidParam(String),
-	InvalidEndpoint(String),
-}
-
 #[derive(Debug, Clone)]
 pub struct FungibleTransfer {
 	pub source_chain_id: u8,

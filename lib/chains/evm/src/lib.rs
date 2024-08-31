@@ -1,11 +1,8 @@
-use ethers_contract::abigen;
-use ethers_core::types::Address;
+use alloy::primitives::Address;
 
-// mod connection;
-pub mod monitors;
-// mod temp;
 pub mod builder;
-pub mod contracts;
+pub mod reader;
+pub mod services;
 pub mod types;
 pub mod writer;
 

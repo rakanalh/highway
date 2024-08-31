@@ -1,5 +1,5 @@
 [package]
-name = "highway-ethereum"
+name = "highway-evm"
 version.workspace = true
 categories.workspace = true
 edition.workspace = true
@@ -11,9 +11,11 @@ repository.workspace = true
 rust-version.workspace = true
 
 [dependencies]
-alloy = { workspace = true, features = ["sol-types", "providers"] }
+alloy = { workspace = true, features = ["sol-types", "providers", "provider-http", "provider-ws", "contract", "reqwest", "rpc-types-eth"] }
+anyhow = { workspace = true }
 async-trait = { workspace = true }
 derive_more = { workspace = true }
+futures = { workspace = true }
 serde = { workspace = true }
 tokio = { workspace = true }
 tracing = { workspace = true }

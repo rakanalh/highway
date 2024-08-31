@@ -1,7 +1,6 @@
 use async_trait::async_trait;
-use tokio::sync::mpsc::Sender;
 
-use crate::types::{BuilderError, Event, Services};
+use crate::types::Services;
 
 #[async_trait]
 pub trait Service {
@@ -10,5 +9,5 @@ pub trait Service {
 
 #[async_trait]
 pub trait Builder {
-	async fn build(self) -> Result<Services, BuilderError>;
+	async fn build(self) -> anyhow::Result<Services>;
 }
